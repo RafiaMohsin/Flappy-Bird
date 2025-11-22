@@ -431,6 +431,9 @@ check_collision:
     jl noCollision
     mov word [score_flag],0
     inc word [score_val]
+    mov bx, 20
+   mov cx, 5000
+   call play_sound
     ; Bird is inside the gap - safe!
     
 noCollision:
@@ -705,8 +708,22 @@ call play_sound
     cmp word [crash], 1
     jne game_loop 
 The_end:
+; --- PLAY CRASH SOUND ---
+; --- GLITCHY CRASH ---
+mov bx, 800
+mov cx, 2000
+call play_sound 
+call pipe_delay
+mov bx, 200
+mov cx, 2000
+call play_sound
+call pipe_delay
+mov bx, 600
+mov cx, 2000
+call play_sound
     call clrscr
     call endscr
     MOV AH, 4CH
     INT 21H
+
     
